@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rodrigo Gaytan Miranda — Ingeniero Mecatrónico | HIL Test Engineer</title>
+<meta name="description" content="Rodrigo Gaytan Miranda — Ingeniero Mecatrónico enfocado en validación de sistemas HIL, con proyección hacia la gestión de proyectos industriales.">
+
+<!-- Fonts: Space Grotesk (display, geometric/technical), Inter (body), JetBrains Mono (data/labels) -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<!-- Tailwind CSS via CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          paper:   '#14171A',   // page background — dark graphite
+          deep:    '#0E1012',   // deepest background — footer / recessed bands
+          surface: '#1E2328',   // raised panel background — cards, header
+          ink:     '#F2F1ED',   // primary text — near-white
+          inksoft: '#9CA3A8',   // secondary text — muted gray
+          line:    '#2A2F34',   // hairline borders
+          steel:   '#5E7B8C',   // metallic accent
+          signal:  '#4A90E2',   // corporate blue accent
+        },
+        fontFamily: {
+          display: ['"Space Grotesk"', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['"JetBrains Mono"', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #14171A; }
+
+  /* Focus visibility for accessibility */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #4A90E2;
+    outline-offset: 3px;
+  }
+
+  .hairline { border-color: #2A2F34; }
+
+  /* Signature element: oscilloscope-style signal trace */
+  .trace-path {
+    stroke-dasharray: 1400;
+    stroke-dashoffset: 1400;
+    animation: draw-trace 3.2s ease-out forwards;
+  }
+  @keyframes draw-trace {
+    to { stroke-dashoffset: 0; }
+  }
+
+  /* Status dot pulse — used sparingly, only in the hero */
+  .status-dot {
+    box-shadow: 0 0 0 0 rgba(74,144,226,0.5);
+    animation: pulse-dot 2.4s infinite;
+  }
+  @keyframes pulse-dot {
+    0%   { box-shadow: 0 0 0 0 rgba(74,144,226,0.45); }
+    70%  { box-shadow: 0 0 0 8px rgba(74,144,226,0); }
+    100% { box-shadow: 0 0 0 0 rgba(74,144,226,0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .trace-path { animation: none; stroke-dashoffset: 0; }
+    .status-dot { animation: none; }
+    * { transition: none !important; }
+  }
+
+  /* Language toggle switch */
+  .lang-toggle {
+    position: relative;
+    width: 76px;
+    height: 34px;
+    border-radius: 999px;
+    background: #0E1012;
+    border: 1px solid #2A2F34;
+    display: flex;
+    align-items: center;
+    padding: 3px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .lang-toggle .lang-knob {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #F2F1ED;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    font-weight: 600;
+    color: #0E1012;
+    transition: transform 0.25s cubic-bezier(0.4,0,0.2,1);
+  }
+  .lang-toggle[data-lang="en"] .lang-knob { transform: translateX(42px); }
+  .lang-toggle .lang-label-es,
+  .lang-toggle .lang-label-en {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #9CA3A8;
+    width: 50%;
+    text-align: center;
+    z-index: 0;
+  }
+
+  /* Eyebrow / module tag style */
+  .module-tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #4A90E2;
+  }
+
+  /* Project card hover */
+  .proj-card { transition: border-color 0.2s ease, transform 0.2s ease; }
+  .proj-card:hover { border-color: #5E7B8C; transform: translateY(-2px); }
+
+  .nav-link { position: relative; }
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: -4px;
+    width: 0%; height: 1px;
+    background: #4A90E2;
+    transition: width 0.2s ease;
+  }
+  .nav-link:hover::after { width: 100%; }
+
+  .timeline-rail {
+    background: linear-gradient(to bottom, #2A2F34 0%, #2A2F34 100%);
+  }
+</style>
+</head>
+
+<body class="bg-paper text-ink font-body antialiased">
+
+<!-- ============ HEADER ============ -->
+<header class="fixed top-0 left-0 w-full z-50 bg-paper/90 backdrop-blur border-b hairline">
+  <div class="max-w-6xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
+    <a href="#top" class="flex items-center gap-2.5 font-display font-semibold text-lg tracking-tight text-ink">
+      <!-- TODO: Replace src with the real path to your logo, e.g. assets/logo.svg or assets/logo.png -->
+      <img src="assets/logo.svg" alt="Logo Rodrigo Gaytan Miranda" class="h-7 w-7 object-contain" onerror="this.style.display='none'">
+      Rodrigo Gaytan <span class="text-inksoft font-normal">Miranda</span>
+    </a>
+
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="#experiencia" class="nav-link font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink" data-i18n="nav.experience">Experiencia</a>
+      <a href="#proyectos" class="nav-link font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink" data-i18n="nav.projects">Proyectos</a>
+      <a href="#multimedia" class="nav-link font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink" data-i18n="nav.media">Multimedia</a>
+      <a href="#proyeccion" class="nav-link font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink" data-i18n="nav.projection">Proyección</a>
+      <a href="#contacto" class="nav-link font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink" data-i18n="nav.contact">Contacto</a>
+    </nav>
+
+    <div class="flex items-center gap-4">
+      <a href="#contacto"
+         class="hidden sm:inline-block font-mono text-xs uppercase tracking-widest border border-ink text-ink px-4 py-2 rounded-full hover:bg-ink hover:text-paper transition-colors"
+         data-i18n="nav.cta">Contáctame</a>
+
+      <!-- Language toggle -->
+      <button id="langToggle" class="lang-toggle" data-lang="es" aria-label="Switch language / Cambiar idioma">
+        <span class="lang-label-es">ES</span>
+        <span class="lang-label-en">EN</span>
+        <span class="lang-knob" id="langKnob">ES</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section id="top" class="relative pt-40 pb-28 px-6 md:px-10 border-b hairline overflow-hidden">
+  <div class="max-w-6xl mx-auto relative">
+
+    <!-- Signature: oscilloscope signal trace, subtle background element -->
+    <svg class="absolute -top-6 right-0 w-full max-w-xl h-32 opacity-[0.35] pointer-events-none hidden md:block"
+         viewBox="0 0 600 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <path class="trace-path" d="M0 60 L60 60 L80 20 L100 100 L120 60 L180 60 L200 30 L220 90 L240 60 L300 60 L320 15 L340 105 L360 60 L420 60 L440 40 L460 80 L480 60 L600 60"
+            stroke="#4A90E2" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="flex items-center gap-2 mb-6">
+      <span class="w-2 h-2 rounded-full bg-signal status-dot"></span>
+      <span class="module-tag" data-i18n="hero.status">Estatus: Disponible para nuevos retos</span>
+    </div>
+
+    <h1 class="font-display font-semibold text-4xl sm:text-5xl md:text-6xl leading-[1.05] tracking-tight text-ink max-w-3xl">
+      Rodrigo Gaytan Miranda
+    </h1>
+
+    <p class="mt-4 font-mono text-sm md:text-base uppercase tracking-widest text-steel" data-i18n="hero.role">
+      Ingeniero Mecatrónico&nbsp;|&nbsp;HIL Test Engineer
+    </p>
+
+    <p class="mt-8 text-lg md:text-xl text-inksoft max-w-2xl leading-relaxed" data-i18n="hero.subtitle">
+      Enfocado en la validación y prueba de sistemas complejos, construyendo hoy la disciplina técnica
+      que necesitaré para liderar operaciones industriales mañana.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center gap-4">
+      <!-- TODO: Replace href with the real path/URL to your CV PDF, e.g. "assets/CV-Rodrigo-Gaytan-Miranda.pdf" -->
+      <a href="assets/CV-Rodrigo-Gaytan-Miranda.pdf" download
+         class="inline-flex items-center gap-2 bg-signal text-deep font-mono text-xs uppercase tracking-widest px-6 py-3.5 rounded-full hover:opacity-90 transition-opacity">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+        <span data-i18n="hero.cta1">Descargar CV (PDF)</span>
+      </a>
+
+      <!-- Contact email: rgaytanmiranda9@gmail.com -->
+      <a href="mailto:rgaytanmiranda9@gmail.com"
+         class="inline-flex items-center gap-2 border border-ink text-ink font-mono text-xs uppercase tracking-widest px-6 py-3.5 rounded-full hover:bg-ink hover:text-paper transition-colors">
+        <span data-i18n="hero.cta2">Contáctame</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ EXPERIENCIA Y VISIÓN GLOBAL ============ -->
+<section id="experiencia" class="px-6 md:px-10 py-24 border-b hairline">
+  <div class="max-w-6xl mx-auto">
+    <div class="module-tag mb-3" data-i18n="exp.tag">Módulo // Trayectoria</div>
+    <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tight max-w-xl" data-i18n="exp.title">
+      Experiencia técnica con visión global
+    </h2>
+    <p class="mt-4 text-inksoft max-w-2xl leading-relaxed" data-i18n="exp.subtitle">
+      De la validación de sistemas embebidos a la cotización técnica industrial, con una perspectiva
+      internacional que amplía cada decisión de ingeniería.
+    </p>
+
+    <div class="mt-16 relative">
+      <div class="hidden md:block absolute left-[7px] top-2 bottom-2 w-px timeline-rail"></div>
+
+      <!-- Entry 1: Satven -->
+      <div class="relative md:pl-12 pb-14">
+        <span class="hidden md:block absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full bg-signal ring-4 ring-paper"></span>
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span class="font-mono text-xs uppercase tracking-widest text-signal" data-i18n="exp.satven.date">Actual</span>
+          <h3 class="font-display font-semibold text-xl md:text-2xl">Satven</h3>
+          <span class="font-mono text-xs uppercase tracking-widest text-inksoft" data-i18n="exp.satven.role">HIL Test Engineer</span>
+        </div>
+        <p class="mt-3 text-inksoft leading-relaxed max-w-2xl" data-i18n="exp.satven.desc">
+          Diseño y ejecución de pruebas Hardware-in-the-Loop para validar el comportamiento de sistemas
+          embebidos antes de su integración física, reduciendo riesgo y tiempo de desarrollo.
+        </p>
+      </div>
+
+      <!-- Entry 2: ABB México -->
+      <div class="relative md:pl-12 pb-14">
+        <span class="hidden md:block absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full bg-steel ring-4 ring-paper"></span>
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span class="font-mono text-xs uppercase tracking-widest text-inksoft" data-i18n="exp.abb.date">6 meses</span>
+          <h3 class="font-display font-semibold text-xl md:text-2xl">ABB México</h3>
+          <span class="font-mono text-xs uppercase tracking-widest text-inksoft" data-i18n="exp.abb.role">Trainee — Motores BT/MT</span>
+        </div>
+        <p class="mt-3 text-inksoft leading-relaxed max-w-2xl" data-i18n="exp.abb.desc">
+          Formación técnica en motores de baja y media tensión: elaboración de cotizaciones técnicas
+          y documentación bilingüe para clientes industriales.
+        </p>
+      </div>
+
+      <!-- Entry 3: BME Budapest -->
+      <div class="relative md:pl-12">
+        <span class="hidden md:block absolute left-0 top-1.5 w-[15px] h-[15px] rounded-full bg-steel ring-4 ring-paper"></span>
+        <div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <span class="font-mono text-xs uppercase tracking-widest text-inksoft" data-i18n="exp.bme.date">Intercambio Académico</span>
+          <h3 class="font-display font-semibold text-xl md:text-2xl">BME — Budapest, Hungría</h3>
+        </div>
+        <p class="mt-3 text-inksoft leading-relaxed max-w-2xl" data-i18n="exp.bme.desc">
+          Semestre en la Budapest University of Technology and Economics cursando gestión, economía
+          de negocios y calidad — una base internacional que amplía mi perspectiva de la ingeniería
+          más allá de lo puramente técnico.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROYECTOS TÉCNICOS ============ -->
+<section id="proyectos" class="px-6 md:px-10 py-24 border-b hairline bg-deep">
+  <div class="max-w-6xl mx-auto">
+    <div class="module-tag mb-3" data-i18n="proj.tag">Módulo // Proyectos</div>
+    <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tight max-w-xl" data-i18n="proj.title">
+      Proyectos técnicos
+    </h2>
+    <p class="mt-4 text-inksoft max-w-2xl leading-relaxed" data-i18n="proj.subtitle">
+      Trabajo aplicado en visión computacional, diseño aeronáutico y automatización — documentado y
+      disponible para revisión técnica.
+    </p>
+
+    <div class="mt-14 grid md:grid-cols-3 gap-6">
+
+      <!-- Project 1 -->
+      <div class="proj-card border hairline rounded-2xl p-7 flex flex-col bg-surface">
+        <span class="font-mono text-[11px] uppercase tracking-widest text-signal" data-i18n="proj.p1.tag">Visión Computacional</span>
+        <h3 class="mt-3 font-display font-semibold text-lg" data-i18n="proj.p1.title">Carro Autónomo — CINVESTAV</h3>
+        <p class="mt-3 text-sm text-inksoft leading-relaxed flex-1" data-i18n="proj.p1.desc">
+          Plataforma móvil autónoma con navegación basada en visión computacional, desarrollada en
+          colaboración con CINVESTAV para explorar percepción y control en tiempo real.
+        </p>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="proj-card border hairline rounded-2xl p-7 flex flex-col bg-surface">
+        <span class="font-mono text-[11px] uppercase tracking-widest text-signal" data-i18n="proj.p2.tag">Diseño Aeronáutico</span>
+        <h3 class="mt-3 font-display font-semibold text-lg" data-i18n="proj.p2.title">SAE Aerodesign — 18°/33 Internacional</h3>
+        <p class="mt-3 text-sm text-inksoft leading-relaxed flex-1" data-i18n="proj.p2.desc">
+          Liderazgo técnico dentro del equipo de diseño estructural y aerodinámico en la competencia
+          internacional SAE Aerodesign, finalizando en el lugar 18 de 33 equipos.
+        </p>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="proj-card border hairline rounded-2xl p-7 flex flex-col bg-surface">
+        <span class="font-mono text-[11px] uppercase tracking-widest text-signal" data-i18n="proj.p3.tag">Automatización Industrial</span>
+        <h3 class="mt-3 font-display font-semibold text-lg" data-i18n="proj.p3.title">Programación PLC — Servicio Becario</h3>
+        <p class="mt-3 text-sm text-inksoft leading-relaxed flex-1" data-i18n="proj.p3.desc">
+          Desarrollo de lógica de control PLC como parte de un programa de servicio becario en el
+          Tecnológico de Monterrey, aplicando fundamentos de automatización industrial.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ MULTIMEDIA ============ -->
+<section id="multimedia" class="px-6 md:px-10 py-24 border-b hairline">
+  <div class="max-w-6xl mx-auto">
+    <div class="module-tag mb-3" data-i18n="media.tag">Módulo // Multimedia</div>
+    <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tight max-w-xl" data-i18n="media.title">
+      Galería de proyectos
+    </h2>
+    <p class="mt-4 text-inksoft max-w-2xl leading-relaxed" data-i18n="media.subtitle">
+      Registro visual del trabajo en banco de pruebas, prototipos y competencias — evidencia directa
+      del proceso detrás de cada proyecto técnico.
+    </p>
+
+    <div class="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+
+      <!-- Photo 1 -->
+      <figure class="relative aspect-[4/3] rounded-xl overflow-hidden border hairline bg-surface group">
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-inksoft px-4 text-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6 9.5 3.5h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span class="font-mono text-[10px] uppercase tracking-widest" data-i18n="media.pending">Foto pendiente</span>
+        </div>
+        <!-- TODO: Replace src with the real path to your photo, e.g. assets/gallery/carro-autonomo-01.jpg -->
+        <img src="assets/gallery/carro-autonomo-01.jpg" alt="Carro Autónomo CINVESTAV" loading="lazy"
+             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+             onerror="this.style.display='none'">
+        <figcaption class="absolute bottom-0 left-0 right-0 bg-deep/85 backdrop-blur px-3 py-2">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-ink" data-i18n="media.cap1">Carro Autónomo — CINVESTAV</span>
+        </figcaption>
+      </figure>
+
+      <!-- Photo 2 -->
+      <figure class="relative aspect-[4/3] rounded-xl overflow-hidden border hairline bg-surface group">
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-inksoft px-4 text-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6 9.5 3.5h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span class="font-mono text-[10px] uppercase tracking-widest" data-i18n="media.pending">Foto pendiente</span>
+        </div>
+        <!-- TODO: Replace src with the real path to your photo, e.g. assets/gallery/carro-autonomo-02.jpg -->
+        <img src="assets/gallery/carro-autonomo-02.jpg" alt="Carro Autónomo CINVESTAV — detalle" loading="lazy"
+             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+             onerror="this.style.display='none'">
+        <figcaption class="absolute bottom-0 left-0 right-0 bg-deep/85 backdrop-blur px-3 py-2">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-ink" data-i18n="media.cap2">Pruebas de navegación autónoma</span>
+        </figcaption>
+      </figure>
+
+      <!-- Photo 3 -->
+      <figure class="relative aspect-[4/3] rounded-xl overflow-hidden border hairline bg-surface group">
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-inksoft px-4 text-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6 9.5 3.5h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span class="font-mono text-[10px] uppercase tracking-widest" data-i18n="media.pending">Foto pendiente</span>
+        </div>
+        <!-- TODO: Replace src with the real path to your photo, e.g. assets/gallery/sae-aerodesign-01.jpg -->
+        <img src="assets/gallery/sae-aerodesign-01.jpg" alt="SAE Aerodesign — equipo" loading="lazy"
+             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+             onerror="this.style.display='none'">
+        <figcaption class="absolute bottom-0 left-0 right-0 bg-deep/85 backdrop-blur px-3 py-2">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-ink" data-i18n="media.cap3">SAE Aerodesign — equipo técnico</span>
+        </figcaption>
+      </figure>
+
+      <!-- Photo 4 -->
+      <figure class="relative aspect-[4/3] rounded-xl overflow-hidden border hairline bg-surface group">
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-inksoft px-4 text-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6 9.5 3.5h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span class="font-mono text-[10px] uppercase tracking-widest" data-i18n="media.pending">Foto pendiente</span>
+        </div>
+        <!-- TODO: Replace src with the real path to your photo, e.g. assets/gallery/sae-aerodesign-02.jpg -->
+        <img src="assets/gallery/sae-aerodesign-02.jpg" alt="SAE Aerodesign — prototipo" loading="lazy"
+             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+             onerror="this.style.display='none'">
+        <figcaption class="absolute bottom-0 left-0 right-0 bg-deep/85 backdrop-blur px-3 py-2">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-ink" data-i18n="media.cap4">Prototipo estructural en pruebas</span>
+        </figcaption>
+      </figure>
+
+      <!-- Photo 5 -->
+      <figure class="relative aspect-[4/3] rounded-xl overflow-hidden border hairline bg-surface group">
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-inksoft px-4 text-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6 9.5 3.5h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span class="font-mono text-[10px] uppercase tracking-widest" data-i18n="media.pending">Foto pendiente</span>
+        </div>
+        <!-- TODO: Replace src with the real path to your photo, e.g. assets/gallery/plc-automation-01.jpg -->
+        <img src="assets/gallery/plc-automation-01.jpg" alt="Programación PLC" loading="lazy"
+             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+             onerror="this.style.display='none'">
+        <figcaption class="absolute bottom-0 left-0 right-0 bg-deep/85 backdrop-blur px-3 py-2">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-ink" data-i18n="media.cap5">Panel de control — programación PLC</span>
+        </figcaption>
+      </figure>
+
+      <!-- Photo 6 -->
+      <figure class="relative aspect-[4/3] rounded-xl overflow-hidden border hairline bg-surface group">
+        <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-inksoft px-4 text-center">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="6" width="18" height="14" rx="2"/><path d="M8 6 9.5 3.5h5L16 6"/><circle cx="12" cy="13" r="3.5"/></svg>
+          <span class="font-mono text-[10px] uppercase tracking-widest" data-i18n="media.pending">Foto pendiente</span>
+        </div>
+        <!-- TODO: Replace src with the real path to your photo, e.g. assets/gallery/satven-hil-01.jpg -->
+        <img src="assets/gallery/satven-hil-01.jpg" alt="Banco de pruebas HIL — Satven" loading="lazy"
+             class="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+             onerror="this.style.display='none'">
+        <figcaption class="absolute bottom-0 left-0 right-0 bg-deep/85 backdrop-blur px-3 py-2">
+          <span class="font-mono text-[10px] uppercase tracking-widest text-ink" data-i18n="media.cap6">Banco de pruebas HIL — Satven</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROYECCIÓN Y FUTURO ============ -->
+<section id="proyeccion" class="px-6 md:px-10 py-24 border-b hairline">
+  <div class="max-w-6xl mx-auto grid md:grid-cols-[1fr_auto] gap-10 items-start">
+    <div class="max-w-2xl">
+      <div class="module-tag mb-3" data-i18n="future.tag">Módulo // Proyección</div>
+      <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tight" data-i18n="future.title">
+        De la validación técnica a la gestión de proyectos
+      </h2>
+      <p class="mt-5 text-inksoft leading-relaxed text-lg" data-i18n="future.desc">
+        Mi siguiente paso es formalizar mi capacidad de liderar proyectos: actualmente me preparo para
+        obtener la certificación CAPM del PMI, con la mira puesta en la certificación PMP en el mediano
+        plazo — integrando así mi base técnica con una disciplina de gestión rigurosa, aplicable a
+        operaciones industriales de alto impacto.
+      </p>
+    </div>
+
+    <div class="flex md:flex-col gap-4 font-mono text-xs uppercase tracking-widest">
+      <div class="border hairline rounded-xl px-5 py-4 min-w-[160px] bg-surface">
+        <div class="text-inksoft" data-i18n="future.step1label">En preparación</div>
+        <div class="mt-1 text-ink font-semibold">CAPM · PMI</div>
+      </div>
+      <div class="border hairline rounded-xl px-5 py-4 min-w-[160px] bg-surface">
+        <div class="text-inksoft" data-i18n="future.step2label">Meta a mediano plazo</div>
+        <div class="mt-1 text-ink font-semibold">PMP · PMI</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER Y CONTACTO ============ -->
+<footer id="contacto" class="px-6 md:px-10 pt-20 pb-10 bg-deep text-ink">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-[1fr_auto] gap-12 items-end">
+      <div>
+        <div class="module-tag mb-3" data-i18n="contact.tag">Módulo // Contacto</div>
+        <h2 class="font-display font-semibold text-3xl md:text-4xl tracking-tight max-w-lg" data-i18n="contact.title">
+          Hablemos sobre cómo puedo aportar a tu equipo
+        </h2>
+        <p class="mt-4 text-inksoft max-w-md leading-relaxed" data-i18n="contact.subtitle">
+          Disponible para conversaciones sobre roles técnicos de validación, automatización, o posiciones
+          con proyección hacia la gestión de proyectos industriales.
+        </p>
+      </div>
+
+      <div class="flex flex-col gap-3 font-mono text-xs uppercase tracking-widest">
+        <a href="mailto:rgaytanmiranda9@gmail.com" class="flex items-center gap-2 hover:text-signal transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18v12H3z"/><path d="m3 6 9 7 9-7"/></svg>
+          rgaytanmiranda9@gmail.com
+        </a>
+        <a href="https://www.linkedin.com/in/rodrigoogam/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-signal transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1s2.5 1.12 2.5 2.5ZM.24 8.25h4.5V23H.24V8.25ZM8.5 8.25h4.32v2.02h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V23h-4.5v-6.66c0-1.59-.03-3.63-2.21-3.63-2.22 0-2.56 1.73-2.56 3.52V23H8.5V8.25Z"/></svg>
+          LinkedIn
+        </a>
+        <!-- TODO: Replace with your real GitHub profile URL -->
+        <a href="https://github.com/rodrigoogam" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-signal transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
+          GitHub
+        </a>
+        <!-- TODO: Replace href with the real path/URL to your CV PDF -->
+        <a href="assets/CV-Rodrigo-Gaytan-Miranda.pdf" download class="flex items-center gap-2 border border-ink/30 rounded-full px-4 py-2.5 mt-2 hover:bg-signal hover:text-deep hover:border-signal transition-colors">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+          <span data-i18n="contact.downloadCV">Descargar CV</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="mt-16 pt-6 border-t border-ink/15 flex flex-wrap justify-between gap-3 text-[11px] font-mono text-inksoft/70 uppercase tracking-widest">
+      <span>© 2026 Rodrigo Gaytan Miranda</span>
+      <span data-i18n="contact.footerNote">Diseñado con precisión técnica</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ JAVASCRIPT: i18n dictionary + language toggle ============ -->
+<script>
+(function () {
+  const translations = {
+    es: {
+      "nav.experience": "Experiencia",
+      "nav.projects": "Proyectos",
+      "nav.media": "Multimedia",
+      "nav.projection": "Proyección",
+      "nav.contact": "Contacto",
+      "nav.cta": "Contáctame",
+
+      "hero.status": "Estatus: Disponible para nuevos retos",
+      "hero.role": "Ingeniero Mecatrónico\u00A0|\u00A0HIL Test Engineer",
+      "hero.subtitle": "Enfocado en la validación y prueba de sistemas complejos, construyendo hoy la disciplina técnica que necesitaré para liderar operaciones industriales mañana.",
+      "hero.cta1": "Descargar CV (PDF)",
+      "hero.cta2": "Contáctame",
+
+      "exp.tag": "Módulo // Trayectoria",
+      "exp.title": "Experiencia técnica con visión global",
+      "exp.subtitle": "De la validación de sistemas embebidos a la cotización técnica industrial, con una perspectiva internacional que amplía cada decisión de ingeniería.",
+      "exp.satven.date": "Actual",
+      "exp.satven.role": "HIL Test Engineer",
+      "exp.satven.desc": "Diseño y ejecución de pruebas Hardware-in-the-Loop para validar el comportamiento de sistemas embebidos antes de su integración física, reduciendo riesgo y tiempo de desarrollo.",
+      "exp.abb.date": "6 meses",
+      "exp.abb.role": "Trainee — Motores BT/MT",
+      "exp.abb.desc": "Formación técnica en motores de baja y media tensión: elaboración de cotizaciones técnicas y documentación bilingüe para clientes industriales.",
+      "exp.bme.date": "Intercambio Académico",
+      "exp.bme.desc": "Semestre en la Budapest University of Technology and Economics cursando gestión, economía de negocios y calidad — una base internacional que amplía mi perspectiva de la ingeniería más allá de lo puramente técnico.",
+
+      "proj.tag": "Módulo // Proyectos",
+      "proj.title": "Proyectos técnicos",
+      "proj.subtitle": "Trabajo aplicado en visión computacional, diseño aeronáutico y automatización — documentado y disponible para revisión técnica.",
+      "proj.p1.tag": "Visión Computacional",
+      "proj.p1.title": "Carro Autónomo — CINVESTAV",
+      "proj.p1.desc": "Plataforma móvil autónoma con navegación basada en visión computacional, desarrollada en colaboración con CINVESTAV para explorar percepción y control en tiempo real.",
+      "proj.p2.tag": "Diseño Aeronáutico",
+      "proj.p2.title": "SAE Aerodesign — 18°/33 Internacional",
+      "proj.p2.desc": "Liderazgo técnico dentro del equipo de diseño estructural y aerodinámico en la competencia internacional SAE Aerodesign, finalizando en el lugar 18 de 33 equipos.",
+      "proj.p3.tag": "Automatización Industrial",
+      "proj.p3.title": "Programación PLC — Servicio Becario",
+      "proj.p3.desc": "Desarrollo de lógica de control PLC como parte de un programa de servicio becario en el Tecnológico de Monterrey, aplicando fundamentos de automatización industrial.",
+      "proj.viewCode": "Ver en GitHub",
+
+      "media.tag": "Módulo // Multimedia",
+      "media.title": "Galería de proyectos",
+      "media.subtitle": "Registro visual del trabajo en banco de pruebas, prototipos y competencias — evidencia directa del proceso detrás de cada proyecto técnico.",
+      "media.pending": "Foto pendiente",
+      "media.cap1": "Carro Autónomo — CINVESTAV",
+      "media.cap2": "Pruebas de navegación autónoma",
+      "media.cap3": "SAE Aerodesign — equipo técnico",
+      "media.cap4": "Prototipo estructural en pruebas",
+      "media.cap5": "Panel de control — programación PLC",
+      "media.cap6": "Banco de pruebas HIL — Satven",
+
+      "future.tag": "Módulo // Proyección",
+      "future.title": "De la validación técnica a la gestión de proyectos",
+      "future.desc": "Mi siguiente paso es formalizar mi capacidad de liderar proyectos: actualmente me preparo para obtener la certificación CAPM del PMI, con la mira puesta en la certificación PMP en el mediano plazo — integrando así mi base técnica con una disciplina de gestión rigurosa, aplicable a operaciones industriales de alto impacto.",
+      "future.step1label": "En preparación",
+      "future.step2label": "Meta a mediano plazo",
+
+      "contact.tag": "Módulo // Contacto",
+      "contact.title": "Hablemos sobre cómo puedo aportar a tu equipo",
+      "contact.subtitle": "Disponible para conversaciones sobre roles técnicos de validación, automatización, o posiciones con proyección hacia la gestión de proyectos industriales.",
+      "contact.downloadCV": "Descargar CV",
+      "contact.footerNote": "Diseñado con precisión técnica",
+    },
+    en: {
+      "nav.experience": "Experience",
+      "nav.projects": "Projects",
+      "nav.media": "Media",
+      "nav.projection": "Roadmap",
+      "nav.contact": "Contact",
+      "nav.cta": "Get in Touch",
+
+      "hero.status": "Status: Open to new opportunities",
+      "hero.role": "Mechatronics Engineer\u00A0|\u00A0HIL Test Engineer",
+      "hero.subtitle": "Focused on validating and testing complex systems today, building the technical discipline to lead industrial operations tomorrow.",
+      "hero.cta1": "Download CV (PDF)",
+      "hero.cta2": "Get in Touch",
+
+      "exp.tag": "Module // Track Record",
+      "exp.title": "Technical experience with a global perspective",
+      "exp.subtitle": "From embedded systems validation to industrial technical quotations, shaped by an international perspective that broadens every engineering decision.",
+      "exp.satven.date": "Current",
+      "exp.satven.role": "HIL Test Engineer",
+      "exp.satven.desc": "Design and execution of Hardware-in-the-Loop tests to validate embedded system behavior before physical integration, reducing development risk and time.",
+      "exp.abb.date": "6 months",
+      "exp.abb.role": "Trainee — LV/MV Motors",
+      "exp.abb.desc": "Six-month technical trainee role in low and medium voltage motors: technical quotations and bilingual documentation for industrial clients.",
+      "exp.bme.date": "Academic Exchange",
+      "exp.bme.desc": "One semester at the Budapest University of Technology and Economics studying management, business economics, and quality — an international foundation that broadens my perspective on engineering beyond the purely technical.",
+
+      "proj.tag": "Module // Projects",
+      "proj.title": "Technical projects",
+      "proj.subtitle": "Applied work in computer vision, aerospace design, and automation — documented and available for technical review.",
+      "proj.p1.tag": "Computer Vision",
+      "proj.p1.title": "Autonomous Cart — CINVESTAV",
+      "proj.p1.desc": "Autonomous mobile platform with computer-vision-based navigation, developed in collaboration with CINVESTAV to explore real-time perception and control.",
+      "proj.p2.tag": "Aerospace Design",
+      "proj.p2.title": "SAE Aerodesign — 18th/33 International",
+      "proj.p2.desc": "Technical leadership within the structural and aerodynamic design team at the international SAE Aerodesign competition, finishing 18th out of 33 teams.",
+      "proj.p3.tag": "Industrial Automation",
+      "proj.p3.title": "PLC Programming — Scholarship Service",
+      "proj.p3.desc": "Development of PLC control logic as part of a scholarship service program at Tecnológico de Monterrey, applying industrial automation fundamentals.",
+      "proj.viewCode": "View on GitHub",
+
+      "media.tag": "Module // Media",
+      "media.title": "Project gallery",
+      "media.subtitle": "Visual record of test-bench work, prototypes, and competitions — direct evidence of the process behind each technical project.",
+      "media.pending": "Photo pending",
+      "media.cap1": "Autonomous Cart — CINVESTAV",
+      "media.cap2": "Autonomous navigation testing",
+      "media.cap3": "SAE Aerodesign — technical team",
+      "media.cap4": "Structural prototype under testing",
+      "media.cap5": "Control panel — PLC programming",
+      "media.cap6": "HIL test bench — Satven",
+
+      "future.tag": "Module // Roadmap",
+      "future.title": "From technical validation to project management",
+      "future.desc": "My next step is to formalize my ability to lead projects: I'm currently preparing for the PMI's CAPM certification, with PMP certification as a mid-term goal — combining my technical foundation with rigorous project management discipline, applicable to high-impact industrial operations.",
+      "future.step1label": "In progress",
+      "future.step2label": "Mid-term goal",
+
+      "contact.tag": "Module // Contact",
+      "contact.title": "Let's talk about how I can contribute to your team",
+      "contact.subtitle": "Open to conversations about technical roles in validation and automation, or positions with a path toward industrial project management.",
+      "contact.downloadCV": "Download CV",
+      "contact.footerNote": "Designed with technical precision",
+    }
+  };
+
+  const toggle = document.getElementById('langToggle');
+  const knob = document.getElementById('langKnob');
+  const htmlEl = document.documentElement;
+
+  function applyLanguage(lang) {
+    const dict = translations[lang];
+    document.querySelectorAll('[data-i18n]').forEach((el) => {
+      const key = el.getAttribute('data-i18n');
+      if (dict[key] !== undefined) {
+        el.innerHTML = dict[key];
+      }
+    });
+    toggle.setAttribute('data-lang', lang);
+    knob.textContent = lang.toUpperCase();
+    htmlEl.setAttribute('lang', lang);
+    document.title = lang === 'es'
+      ? 'Rodrigo Gaytan Miranda — Ingeniero Mecatrónico | HIL Test Engineer'
+      : 'Rodrigo Gaytan Miranda — Mechatronics Engineer | HIL Test Engineer';
+    localStorage.setItem('site-lang', lang);
+  }
+
+  toggle.addEventListener('click', () => {
+    const current = toggle.getAttribute('data-lang');
+    applyLanguage(current === 'es' ? 'en' : 'es');
+  });
+
+  // Restore saved language preference, default to Spanish
+  const saved = localStorage.getItem('site-lang');
+  applyLanguage(saved === 'en' ? 'en' : 'es');
+})();
+</script>
+
+</body>
+</html>

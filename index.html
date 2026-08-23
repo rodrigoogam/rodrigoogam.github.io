@@ -5,6 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Rodrigo Gaytan Miranda — Ingeniero Mecatrónico</title>
 <meta name="description" content="Rodrigo Gaytan Miranda — Ingeniero Mecatrónico enfocado en validación de sistemas HIL, con proyección hacia la gestión de proyectos industriales.">
+<link rel="canonical" href="https://rodrigoogam.github.io/">
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="assets/favicon-512.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#05070D">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://rodrigoogam.github.io/">
+<meta property="og:title" content="Rodrigo Gaytan Miranda — Ingeniero Mecatrónico">
+<meta property="og:description" content="Ingeniero Mecatrónico enfocado en validación de sistemas HIL, con proyección hacia la gestión de proyectos.">
+<meta property="og:image" content="https://rodrigoogam.github.io/assets/og-image.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="es_MX">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Rodrigo Gaytan Miranda — Ingeniero Mecatrónico">
+<meta name="twitter:description" content="Ingeniero Mecatrónico enfocado en validación de sistemas HIL, con proyección hacia la gestión de proyectos.">
+<meta name="twitter:image" content="https://rodrigoogam.github.io/assets/og-image.jpg">
 
 <!-- Fonts: Space Grotesk (display, geometric/technical), Inter (body), JetBrains Mono (data/labels) -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -241,8 +266,23 @@
         <span class="lang-label-en">EN</span>
         <span class="lang-knob" id="langKnob">ES</span>
       </button>
+      <button id="menuToggle" class="md:hidden relative w-10 h-10 flex items-center justify-center text-ink" aria-label="Abrir menú" aria-expanded="false" aria-controls="mobileNav">
+        <span class="sr-only">Menú</span>
+        <svg id="menuIconOpen" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg id="menuIconClose" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="hidden"><path d="M6 6l12 12M18 6 6 18"/></svg>
+      </button>
     </div>
   </div>
+
+  <!-- Mobile nav panel -->
+  <nav id="mobileNav" class="md:hidden hidden flex-col bg-void/98 backdrop-blur-xl border-t hairline px-6 py-4">
+    <a href="#experiencia" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.experience">Experiencia</a>
+    <a href="#proyectos" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.projects">Proyectos</a>
+    <a href="#habilidades" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.skills">Habilidades</a>
+    <a href="#multimedia" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.media">Multimedia</a>
+    <a href="#proyeccion" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.projection">Proyección</a>
+    <a href="#contacto" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink" data-i18n="nav.contact">Contacto</a>
+  </nav>
 </header>
 
 <!-- ============ HERO ============ -->
@@ -1043,6 +1083,31 @@
     applyLanguage(toggle.getAttribute('data-lang') === 'es' ? 'en' : 'es');
   });
   applyLanguage(localStorage.getItem('site-lang') === 'en' ? 'en' : 'es');
+
+  /* ---- Mobile hamburger menu ---- */
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  const menuIconOpen = document.getElementById('menuIconOpen');
+  const menuIconClose = document.getElementById('menuIconClose');
+
+  function setMenuOpen(open) {
+    mobileNav.classList.toggle('hidden', !open);
+    mobileNav.classList.toggle('flex', open);
+    menuIconOpen.classList.toggle('hidden', open);
+    menuIconClose.classList.toggle('hidden', !open);
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    mobileNav.setAttribute('aria-label', open ? 'Menú principal' : '');
+    document.body.classList.toggle('overflow-hidden', open);
+  }
+  menuToggle.addEventListener('click', () => {
+    setMenuOpen(mobileNav.classList.contains('hidden'));
+  });
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => setMenuOpen(false));
+  });
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) setMenuOpen(false);
+  });
 
   /* ---- Scroll progress + header elevation (rAF-throttled) ---- */
   const progressEl = document.getElementById('scrollProgress');

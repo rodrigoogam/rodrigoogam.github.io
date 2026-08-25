@@ -260,7 +260,11 @@
     </nav>
 
     <div class="flex items-center gap-4">
-      <a href="#contacto" class="magnetic hidden sm:inline-flex items-center font-mono text-xs uppercase tracking-widest border border-white/20 text-ink px-4 py-2 rounded-full hover:border-silver hover:text-silver" data-i18n="nav.cta">Contáctame</a>
+      <a href="assets/CV_Rodrigo_Gaytan_english%20.pdf" download
+         class="magnetic glow-cta hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-royalDeep via-royal to-silver text-void font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-full font-semibold hover:opacity-95">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+        <span data-i18n="nav.cvBtn">Descargar CV</span>
+      </a>
       <button id="langToggle" class="lang-toggle" data-lang="es" aria-label="Switch language / Cambiar idioma">
         <span class="lang-label-es">ES</span>
         <span class="lang-label-en">EN</span>
@@ -281,7 +285,12 @@
     <a href="#habilidades" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.skills">Habilidades</a>
     <a href="#multimedia" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.media">Multimedia</a>
     <a href="#proyeccion" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.projection">Proyección</a>
-    <a href="#contacto" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink" data-i18n="nav.contact">Contacto</a>
+    <a href="#contacto" class="mobile-nav-link block py-3 font-mono text-xs uppercase tracking-widest text-inksoft hover:text-ink border-b hairline" data-i18n="nav.contact">Contacto</a>
+    <a href="assets/CV_Rodrigo_Gaytan_english%20.pdf" download
+       class="mobile-nav-link magnetic glow-cta mt-4 flex items-center justify-center gap-2 bg-gradient-to-r from-royalDeep via-royal to-silver text-void font-mono text-xs uppercase tracking-widest px-4 py-3 rounded-full font-semibold">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
+      <span data-i18n="nav.cvBtn">Descargar CV</span>
+    </a>
   </nav>
 </header>
 
@@ -320,8 +329,7 @@
         <span data-i18n="hero.cta1">Descargar CV (PDF)</span>
       </a>
 
-      <!-- Contact email: rgaytanmiranda9@gmail.com -->
-      <a href="mailto:rgaytanmiranda9@gmail.com"
+      <a href="#contacto"
          class="magnetic items-center gap-2 border border-white/20 text-ink font-mono text-xs uppercase tracking-widest px-6 py-3.5 rounded-full hover:border-silver hover:text-silver">
         <span data-i18n="hero.cta2">Contáctame</span>
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m0 0-6-6m6 6-6 6"/></svg>
@@ -346,7 +354,7 @@
 </section>
 
 <!-- ============ EXPERIENCIA — CAPÍTULO 01: EL CAMINO ============ -->
-<section id="experiencia" class="relative px-6 md:px-10 py-28 border-b hairline">
+<section id="experiencia" class="relative px-6 md:px-10 py-28 border-b hairline bg-panel">
   <div class="max-w-6xl mx-auto">
     <div class="chapter-kicker mb-4 reveal text-inksoft"><span class="chapter-num">01</span><span data-i18n="exp.chapterKicker">El camino recorrido</span></div>
     <h2 class="reveal font-display font-semibold text-3xl md:text-5xl tracking-tight max-w-xl" data-i18n="exp.title">
@@ -424,7 +432,7 @@
 </section>
 
 <!-- ============ PROYECTOS — CAPÍTULO 02: LA EVIDENCIA ============ -->
-<section id="proyectos" class="relative px-6 md:px-10 py-28 border-b hairline bg-panel grid-texture">
+<section id="proyectos" class="relative px-6 md:px-10 py-28 border-b hairline grid-texture">
   <div class="max-w-6xl mx-auto">
     <div class="chapter-kicker mb-4 reveal text-inksoft"><span class="chapter-num">02</span><span data-i18n="proj.chapterKicker">La evidencia</span></div>
     <h2 class="reveal font-display font-semibold text-3xl md:text-5xl tracking-tight max-w-xl" data-i18n="proj.title">
@@ -496,7 +504,7 @@
 </section>
 
 <!-- ============ HABILIDADES TÉCNICAS — CAPÍTULO 03: EL ARSENAL TÉCNICO ============ -->
-<section id="habilidades" class="relative px-6 md:px-10 py-28 border-b hairline">
+<section id="habilidades" class="relative px-6 md:px-10 py-28 border-b hairline bg-panel">
   <div class="max-w-6xl mx-auto">
     <div class="chapter-kicker mb-4 reveal text-inksoft"><span class="chapter-num">03</span><span data-i18n="skills.chapterKicker">El arsenal técnico</span></div>
     <h2 class="reveal font-display font-semibold text-3xl md:text-5xl tracking-tight max-w-xl" data-i18n="skills.title">
@@ -534,6 +542,8 @@
           <span class="skill-pill">Power BI</span>
           <span class="skill-pill" data-i18n="skills.p.excel">Excel avanzado</span>
           <span class="skill-pill">Jira</span>
+          <span class="skill-pill">Office 365</span>
+          <span class="skill-pill">Salesforce</span>
         </div>
       </div>
       <div class="reveal-scale glass rounded-2xl p-6">
@@ -551,13 +561,14 @@
           <span class="skill-pill">PMI</span>
           <span class="skill-pill" data-i18n="skills.p.quality">Gestión de calidad</span>
           <span class="skill-pill">Lean Manufacturing</span>
+          <span class="skill-pill">Six Sigma</span>
         </div>
       </div>
       <div class="reveal-scale glass rounded-2xl p-6">
         <div class="font-mono text-[11px] uppercase tracking-widest text-silver mb-4" data-i18n="skills.cat6">Idiomas</div>
         <div class="flex flex-wrap gap-2">
           <span class="skill-pill" data-i18n="skills.p.es">Español (nativo)</span>
-          <span class="skill-pill" data-i18n="skills.p.en">Inglés (B2+)</span>
+          <span class="skill-pill" data-i18n="skills.p.en">Inglés — dominio profesional</span>
         </div>
       </div>
     </div>
@@ -844,11 +855,6 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5C4.98 4.88 3.87 6 2.5 6S0 4.88 0 3.5 1.11 1 2.48 1s2.5 1.12 2.5 2.5ZM.24 8.25h4.5V23H.24V8.25ZM8.5 8.25h4.32v2.02h.06c.6-1.14 2.07-2.34 4.26-2.34 4.56 0 5.4 3 5.4 6.9V23h-4.5v-6.66c0-1.59-.03-3.63-2.21-3.63-2.22 0-2.56 1.73-2.56 3.52V23H8.5V8.25Z"/></svg>
           LinkedIn
         </a>
-        <!-- TODO: Replace with your real GitHub profile URL -->
-        <a href="https://github.com/rodrigoogam" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-silver transition-colors">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.57.1.78-.25.78-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.34-1.28-1.7-1.28-1.7-1.04-.72.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.73-1.54-2.55-.29-5.24-1.28-5.24-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11 11 0 0 1 5.8 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.7 5.4-5.27 5.69.42.36.78 1.07.78 2.16 0 1.56-.01 2.82-.01 3.2 0 .3.2.66.79.55A10.52 10.52 0 0 0 23.5 12c0-6.35-5.15-11.5-11.5-11.5Z"/></svg>
-          GitHub
-        </a>
         <a href="assets/CV_Rodrigo_Gaytan_english%20.pdf" download class="magnetic glow-cta flex items-center gap-2 bg-gradient-to-r from-royalDeep via-royal to-silver text-void rounded-full px-4 py-2.5 mt-2 font-semibold hover:opacity-95">
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0 0-4-4m4 4 4-4M4 21h16"/></svg>
           <span data-i18n="contact.downloadCV">Descargar CV</span>
@@ -874,7 +880,7 @@
   const translations = {
     es: {
       "nav.experience": "Experiencia", "nav.projects": "Proyectos", "nav.skills": "Habilidades", "nav.media": "Multimedia",
-      "nav.projection": "Proyección", "nav.contact": "Contacto", "nav.cta": "Contáctame",
+      "nav.projection": "Proyección", "nav.contact": "Contacto", "nav.cvBtn": "Descargar CV",
 
       "dot.top": "00 · Inicio", "dot.exp": "01 · El camino", "dot.proj": "02 · La evidencia",
       "dot.skills": "03 · El arsenal", "dot.media": "04 · Detrás de escena", "dot.future": "05 · El destino", "dot.contact": "06 · Conectemos",
@@ -887,7 +893,7 @@
       "skills.cat5": "Metodologías", "skills.cat6": "Idiomas",
       "skills.p.excel": "Excel avanzado", "skills.p.iec": "IEC BT/MT",
       "skills.p.techspec": "Especificación técnica", "skills.p.quality": "Gestión de calidad",
-      "skills.p.es": "Español (nativo)", "skills.p.en": "Inglés (B2+)",
+      "skills.p.es": "Español (nativo)", "skills.p.en": "Inglés — dominio profesional",
       "skills.certLabel": "Certificaciones",
       "skills.cert1.title": "Introducción a la Ciberseguridad", "skills.cert1.issuer": "CISCO · 2025",
       "skills.cert2.title": "Especialización en Gestión de Proyectos de Ingeniería", "skills.cert2.issuer": "Rice University · 2026",
@@ -905,13 +911,13 @@
       "exp.title": "Experiencia técnica con visión global",
       "exp.subtitle": "De la validación de sistemas embebidos a la cotización técnica industrial, con una perspectiva internacional que amplía cada decisión de ingeniería.",
       "exp.degree.date": "Ago 2022 – Jun 2026", "exp.degree.title": "Ingeniería Mecatrónica",
-      "exp.degree.desc": "<li>Materias relevantes: automatización industrial, sistemas de control, robótica, diseño de máquinas y electrónica.</li><li>Seleccionado para el programa EGS, enfocado en liderazgo humano y espíritu emprendedor.</li><li>Promedio: 88/100 — la base que sostiene hoy mi trabajo en validación de sistemas embebidos y mi camino hacia la gestión de proyectos.</li>",
+      "exp.degree.desc": "<li>Materias relevantes: automatización industrial, sistemas de control, robótica, diseño de máquinas y electrónica.</li><li>Seleccionado para el programa EGS, enfocado en liderazgo humano y espíritu emprendedor.</li><li>Promedio: 90/100 — la base que sostiene hoy mi trabajo en validación de sistemas embebidos y mi camino hacia la gestión de proyectos.</li>",
       "exp.satven.date": "Jun 2026 — Actual", "exp.satven.role": "HIL Engineer",
       "exp.satven.desc": "<li>Desarrollo y ejecución de suites de prueba Hardware-in-the-Loop (HIL) para la validación funcional de unidades de control electrónico (ECUs) y sistemas embebidos, con escenarios automatizados de alta cobertura.</li><li>Configuro entornos de simulación en tiempo real y hardware de acondicionamiento de señales para modelar dinámica vehicular y condiciones de operación.</li><li>Realizo análisis de causa raíz y aislamiento de fallas en la frontera hardware-software, documentando y dando seguimiento a defectos hasta su resolución.</li>",
       "exp.abb.date": "Ene 2025 – Jul 2025", "exp.abb.role": "Trainee Especialista — Motores BT/MT",
       "exp.abb.desc": "<li>Preparé cotizaciones técnicas y apoyé la selección de producto para soluciones de motores de baja y media tensión, como punto de contacto técnico entre los equipos de ingeniería y comercial.</li><li>Redacté más de 10 manuales técnicos de venta bilingües para las líneas NEMA, IEC y Baldor, reduciendo los tiempos de respuesta técnica en un 10%.</li><li>Apoyé los procesos de cotización y especificación de cara al cliente, traduciendo especificaciones técnicas en información comercialmente accionable.</li>",
       "exp.bme.date": "Ago 2025 – Ene 2026", "exp.bme.role": "Intercambio Académico",
-      "exp.bme.desc": "<li>Semestre en la Budapest University of Technology and Economics, cursando gestión y economía de negocios, gestión de calidad, máquinas eléctricas, energías renovables y procesos de manufactura.</li><li>Una base internacional que amplía mi perspectiva de la ingeniería más allá de lo puramente técnico.</li>",
+      "exp.bme.desc": "<li>Semestre en la Budapest University of Technology and Economics, cursando gestión de calidad, máquinas eléctricas, energías renovables y procesos de manufactura.</li><li>Una base internacional que amplía mi perspectiva de la ingeniería más allá de lo puramente técnico.</li>",
 
       "proj.chapterKicker": "La evidencia",
       "proj.title": "Proyectos técnicos",
@@ -951,7 +957,7 @@
     },
     en: {
       "nav.experience": "Experience", "nav.projects": "Projects", "nav.skills": "Skills", "nav.media": "Media",
-      "nav.projection": "Roadmap", "nav.contact": "Contact", "nav.cta": "Get in Touch",
+      "nav.projection": "Roadmap", "nav.contact": "Contact", "nav.cvBtn": "Download CV",
 
       "dot.top": "00 · Home", "dot.exp": "01 · The path", "dot.proj": "02 · The evidence",
       "dot.skills": "03 · The arsenal", "dot.media": "04 · Behind the scenes", "dot.future": "05 · The destination", "dot.contact": "06 · Let's connect",
@@ -964,7 +970,7 @@
       "skills.cat5": "Methodologies", "skills.cat6": "Languages",
       "skills.p.excel": "Advanced Excel", "skills.p.iec": "IEC LV/MV",
       "skills.p.techspec": "Technical specification", "skills.p.quality": "Quality management",
-      "skills.p.es": "Spanish (native)", "skills.p.en": "English (B2+)",
+      "skills.p.es": "Spanish (native)", "skills.p.en": "English — professional working proficiency",
       "skills.certLabel": "Certifications",
       "skills.cert1.title": "Introduction to Cybersecurity", "skills.cert1.issuer": "CISCO · 2025",
       "skills.cert2.title": "Engineering Project Management Specialization", "skills.cert2.issuer": "Rice University · 2026",
@@ -982,13 +988,13 @@
       "exp.title": "Technical experience with a global perspective",
       "exp.subtitle": "From embedded systems validation to industrial technical quotations, shaped by an international perspective that broadens every engineering decision.",
       "exp.degree.date": "Aug 2022 – Jun 2026", "exp.degree.title": "Mechatronics Engineering",
-      "exp.degree.desc": "<li>Relevant coursework: industrial automation, control systems, robotics, machine design, and electronics.</li><li>Selected for the EGS program, focused on human leadership and entrepreneurial spirit.</li><li>GPA: 88/100 — the foundation behind my work in embedded systems validation and my path toward project management.</li>",
+      "exp.degree.desc": "<li>Relevant coursework: industrial automation, control systems, robotics, machine design, and electronics.</li><li>Selected for the EGS program, focused on human leadership and entrepreneurial spirit.</li><li>GPA: 90/100 — the foundation behind my work in embedded systems validation and my path toward project management.</li>",
       "exp.satven.date": "Jun 2026 — Present", "exp.satven.role": "HIL Engineer",
       "exp.satven.desc": "<li>Develop and execute Hardware-in-the-Loop (HIL) test suites for functional validation of electronic control units (ECUs) and embedded systems, with high-coverage automated test scenarios.</li><li>Configure real-time simulation environments and signal-conditioning hardware to model vehicle dynamics and operating conditions.</li><li>Perform root-cause analysis and fault isolation across the hardware-software boundary, logging and tracking defects through resolution.</li>",
       "exp.abb.date": "Jan 2025 – Jul 2025", "exp.abb.role": "Trainee Specialist — LV/MV Motors",
       "exp.abb.desc": "<li>Prepared technical quotations and supported product selection for low and medium voltage motor solutions, acting as a technical point of contact between engineering and commercial teams.</li><li>Authored 10+ bilingual technical sales manuals for NEMA, IEC, and Baldor motor lines, cutting technical response times by 10%.</li><li>Supported customer-facing quotation and specification processes, translating technical specifications into commercially actionable information.</li>",
       "exp.bme.date": "Aug 2025 – Jan 2026", "exp.bme.role": "Academic Exchange",
-      "exp.bme.desc": "<li>One semester at the Budapest University of Technology and Economics, studying management and business economics, quality management, electrical machines, renewable energy, and manufacturing processes.</li><li>An international foundation that broadens my perspective on engineering beyond the purely technical.</li>",
+      "exp.bme.desc": "<li>One semester at the Budapest University of Technology and Economics, studying quality management, electrical machines, renewable energy, and manufacturing processes.</li><li>An international foundation that broadens my perspective on engineering beyond the purely technical.</li>",
 
       "proj.chapterKicker": "The evidence",
       "proj.title": "Technical projects",

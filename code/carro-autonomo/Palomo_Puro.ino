@@ -17,8 +17,9 @@
 #define PWM_RES 8  // 8 bits
 
 // WiFi y servidor
-const char* wifiSSID = "Roy";
-const char* wifiPass = "shullmusic";
+// NOTA: credenciales redactadas antes de publicar — usa las tuyas en un entorno local.
+const char* wifiSSID = "YOUR_WIFI_SSID";
+const char* wifiPass = "YOUR_WIFI_PASSWORD";
 WiFiServer wifiServer(1234);
 
 // Estado del robot

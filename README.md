@@ -30,12 +30,22 @@ No build step or package installation is required.
 ```text
 .
 ├── index.html
-├── Gemini_Generated_Image_md8zvpmd8zvpmd8z.png
+├── favicon.ico
 ├── assets/
 │   ├── CV_Rodrigo_Gaytan_english .pdf
+│   ├── favicon-32.png / favicon-192.png / favicon-512.png / apple-touch-icon.png
+│   ├── og-image.jpg
+│   └── gallery/            # real project/experience photos used in the carousel
+├── code/
+│   ├── carro-autonomo/      # autonomous cart — ESP32 firmware + Python vision script
+│   └── robot-flexible/      # flexible-beam RL/PID control — see each folder's README
 ├── LICENSE
 └── README.md
 ```
+
+Each folder under `code/` has its own `README.md` explaining what the code does, how the pieces
+connect, and what it depends on — these are shared as technical evidence, not as ready-to-run
+packages, since most depend on lab-specific hardware.
 
 ## Run Locally
 
@@ -55,10 +65,8 @@ Most content is contained in `index.html`:
 
 1. Update the Spanish and English translations in the `translations` object near the bottom of the file.
 2. Replace the contact links and CV path if personal details or assets change.
-3. Add real project photos under `assets/gallery/` and update the gallery image paths in the multimedia section.
-4. Update the page metadata in the `<head>` when the portfolio description changes.
-
-The gallery currently includes fallback states for images that have not been added yet.
+3. Photos live in `assets/gallery/`; update the paths in the multimedia section if you add or rename any.
+4. Update the page metadata in the `<head>` (title, description, Open Graph/Twitter tags) when the portfolio description changes.
 
 ## Deployment
 
